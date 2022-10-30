@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+* {
+  font-family: "Fredoka One", cursive;
+}
+h2,
+h3,
+h4 {
+  font-family: "Fredoka One", cursive;
+}
+.navbar {
+  background-color: #078080;
+  font-size: 18px;
+}
+
+
+.projects{
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+}
+#profile {
+  border: 1px solid #0000007e;
+  border-radius: 100%;
+}
+
+button {
+  background-color: #0d0d0d;
+  color: #232323;
+}
+
+.contact {
+  width: 100%;
+}
+
+input,
+textarea {
+  background-color: #232323;
+}
+
+a:hover {
+  text-decoration: none !important;
+  text-transform: none;
+  color: #232323;
+}
+
+#font {
+  background-color: #fffeff;
+  color: #232323;
+}
+
+#card {
+  width: 500px;
+  background-color: #262626;
+  box-shadow: 10px 10px 5px 2px #ffffffa9;
+}
+
+a {
+  text-decoration: none;
+  color: #232323;
+}
+
+img {
+  border-radius: 3px;
+}
+
+p,
+h4 {
+  color: #232323;
+  font-size: 20px;
+}
+
+.img {
+  width: 100px;
+}
+
+.tecnologies {
+  color: #f2f2f2;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  background-color: #699bc2;
+}
+i {
+  color: #232323;
+  font-size: 40px;
+
+}
+
+mat-card {
+  background-color: #0780804e;
+  margin-top: 1.5rem;
+}
+mat-card-footer {
+  background-color: #fffffe;
+  border-radius: 5px;
+}
+.btn {
+  background-color: #62acab;
+  color: #fffeff;
+  border: solid 1px #000000;
+  box-shadow: 3px 3px 4px 2px #2323234b;
+}
+.btn:hover{
+  color: #fffeff;
+  transform: scale(1.1);
+  animation: ease;
+}
+svg {
+  position: sticky;
+  display: block;
+  width: calc(215% + 1.3px);
+  height: 77px;
+  transform: rotateY(180deg);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  transform: rotate(180deg);
+  fill: #078080;
+  background-color: #fffeff;
+}
+
+.about {
+  background-color: #d4f0df !important;
+}
+
+label {
+  color: #f2f2f2;
+}
+#a{
+  margin: 15px ;
+
+}
+
+#a:hover {
+  transform: scale(1, 1.2) rotate(-15deg);
+}
+
+#glass {
+  background-color: #fffff1;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+@media screen and (max-width: 600px) {
+  .h-100{
+    margin: 15px;
+  }
+}
