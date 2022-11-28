@@ -20,6 +20,8 @@ h4 {
 #profile {
   border: 1px solid #0000007e;
   border-radius: 100%;
+ width: 200px;
+ height: 200px;
 }
 
 button {
@@ -31,10 +33,6 @@ button {
   width: 100%;
 }
 
-input,
-textarea {
-  background-color: #232323;
-}
 
 a:hover {
   text-decoration: none !important;
@@ -77,9 +75,7 @@ h4 {
   margin-top: 10px;
 }
 
-.progress-bar {
-  background-color: #699bc2;
-}
+
 i {
   color: #232323;
   font-size: 40px;
@@ -136,11 +132,7 @@ label {
   transform: scale(1, 1.2) rotate(-15deg);
 }
 
-#glass {
-  background-color: #fffff1;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-}
+
 
 @media screen and (max-width: 600px) {
   .h-100{
