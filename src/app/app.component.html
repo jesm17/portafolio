@@ -80,7 +80,7 @@
 
     <div class="projects-container" id="project">
       <h3 class="role mw-ft">Proyectos</h3>
-      <div class="row row-cols-2 m-0 p-0 gap-projects">
+      <div class="row m-0 p-0 gap-projects" [ngClass]="{'row-cols-2': !isMobile, 'row-cols-1': isMobile}">
         <div class=" col" *ngFor="let i of listProjects">
           <div class="card-project d-flex mx-2" [ngClass]="{'justify-content-between': !isMobile, 'row': isMobile}">
             <div class="card-image">
