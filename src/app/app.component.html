@@ -13,39 +13,64 @@
 <body>
   <section class="container-fluid">
     <div class="header-hero">
-      <nav class=" navbar w-auto">
-
-        <div class="d-none d-sm-block">
+      <nav class="navbar">
+        <div class="d-none d-sm-flex">
           <a class="navbar-brand" href="/">
-            <img src="../assets/JESM.jpg" alt="" width="30px" height="30px" /></a>
+            <img src="../assets/JESM.jpg" alt="" width="30" height="30" /></a>
         </div>
-        <div *ngFor="let i of listTextNav">
-          <a class="m-1 nav-item" id="a-nav" [href]="i.link">
-            <span *ngIf="!isMobile">
-              {{i.text}}
-            </span>
-            <span *ngIf="isMobile">
-              <i class="{{i.icon}}"></i>
-            </span>
-          </a>
 
+        <button *ngIf="isMobile" class="nav-toggle" (click)="toggleMenu()" aria-label="Abrir menú"
+          [attr.aria-expanded]="isMenuOpen">
+          <i class='bx' [ngClass]="isMenuOpen ? 'bx-x' : 'bx-menu'"></i>
+        </button>
+
+        <div class="nav-menu" *ngIf="!isMobile">
+          <ng-container *ngFor="let i of listTextNav">
+            <a class="m-1 nav-item a-nav" [href]="i.link">
+              <span *ngIf="!isMobile">
+                {{ i.text }}
+              </span>
+              <span *ngIf="isMobile">
+                <i class="{{ i.icon }}"></i>
+              </span>
+            </a>
+          </ng-container>
         </div>
-        <div>
-          <a class="m-1 nav-item" id="a-nav" href="https://github.com/jesm17">
-            Github
-          </a>
-          <a class="m-1 nav-item" id="a-nav"
-            href="https://www.linkedin.com/in/juan-estiben-s%C3%A1nchez-mart%C3%ADnez-30b54a1b0">
-            Linkedin
-          </a>
+
+        <div class="nav-cta" *ngIf="!isMobile">
+          <a class="m-1 nav-item a-nav" href="https://github.com/jesm17"> <span *ngIf="!isMobile">Github</span> <span *ngIf="isMobile"><i class="bx bxl-github"></i></span> </a>
+          <a class="m-1 nav-item a-nav"
+            href="https://www.linkedin.com/in/juan-estiben-s%C3%A1nchez-mart%C3%ADnez-30b54a1b0"> <span *ngIf="!isMobile">Linkedin</span> <span *ngIf="isMobile"><i class="bx bxl-linkedin"></i></span></a>
         </div>
       </nav>
 
+      <!-- Menú móvil desplegable -->
+      <div class="nav-mobile" *ngIf="isMobile && isMenuOpen">
+        <div class="nav-mobile-content">
+          <div class="nav-mobile-section">
+            <ng-container *ngFor="let i of listTextNav">
+              <a class="nav-item a-nav" [href]="i.link" (click)="closeMenu()">
+                <i class="{{ i.icon }}"></i>
+                <span>{{ i.text }}</span>
+              </a>
+            </ng-container>
+          </div>
+          <div class="nav-mobile-section nav-mobile-cta">
+            <a class="nav-item a-nav" href="https://github.com/jesm17" (click)="closeMenu()">
+              <i class='bx bxl-github'></i>
+              <span>Github</span>
+            </a>
+            <a class="nav-item a-nav" href="https://www.linkedin.com/in/juan-estiben-s%C3%A1nchez-mart%C3%ADnez-30b54a1b0" (click)="closeMenu()">
+              <i class='bx bxl-linkedin'></i>
+              <span>Linkedin</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="about about-me-container" id="profile">
-      <div class="role">
-        <p>Full Stack Developer</p>
-      </div>
+
       <div class="greetings">
         <h1>
           Hola, soy Juan Sanchez.
@@ -61,11 +86,15 @@
             colaborar en equipo para crear soluciones innovadoras.
           </p>
           <!-- <a href="../assets/CV/cv.pdf" class="">Descargar CV</a> -->
+          <div class="role">
+            <p class="text-xs">Full Stack Developer</p>
+          </div>
         </div>
         <div *ngIf="!isMobile" class="img-profile-me-container">
           <!-- <img class="img-profile-me" src="../assets/images/profile.webp" alt=""> -->
         </div>
       </div>
+      
     </div>
     <div class="tecnologies-container" id="tecnologies">
       <h3 class="role mw-ft">Tecnologías</h3>
@@ -80,13 +109,13 @@
 
     <div class="projects-container" id="project">
       <h3 class="role mw-ft">Proyectos</h3>
-      <div class="row m-0 p-0 gap-projects" [ngClass]="{'row-cols-2': !isMobile, 'row-cols-1': isMobile}">
-        <div class=" col" *ngFor="let i of listProjects">
-          <div class="card-project d-flex mx-2" [ngClass]="{'justify-content-between': !isMobile, 'row': isMobile}">
+      <div class="projects-grid">
+        <div class="project-item" *ngFor="let i of listProjects">
+          <div class="card-project">
             <div class="card-image">
-              <img [src]="i.image" draggable="false">
+              <img [src]="i.image" [alt]="i.name" loading="lazy" draggable="false">
             </div>
-            <div class="card-content">
+            <div class="card-content m-2 mt-0">
               <div class="card-title">
                 <h4 class="mb-0">{{i.name}}</h4>
               </div>
@@ -98,12 +127,13 @@
                   <i ngClass="{{j.icon}}" class=""></i><span *ngIf="!isMobile">{{j.name}}</span>
                 </span>
               </div>
-              <div class="card-text">
-                <a [href]="i.repolink" target="_blank"><i class="bx bxl-github"></i></a>
-                <a *ngIf="i.previeLink" [href]="i.previeLink" target="_blank">
+              <div class="card-actions">
+                <a [href]="i.repolink" target="_blank" aria-label="Repositorio en GitHub">
+                  <i class="bx bxl-github"></i>
+                </a>
+                <a *ngIf="i.previeLink" [href]="i.previeLink" target="_blank" aria-label="Vista previa del proyecto">
                   <i class='bx bx-right-top-arrow-circle'></i>
                 </a>
-
               </div>
             </div>
           </div>
@@ -112,25 +142,30 @@
     </div>
 
   </section>
-</body>
-<footer>
-  <div class="d-flex justify-content-between align-items-center h-100">
-
-    <span>
-      © {{year}} - Juan Sanchez
-    </span>
-
-    <div>
-
-      <a class="a-footer" href="https://github.com/jesm17">
-        Github <i class='bx bx-right-arrow-alt'></i>
-      </a>
-      <a class="a-footer" href="https://www.linkedin.com/in/juan-estiben-s%C3%A1nchez-mart%C3%ADnez-30b54a1b0">
-        Linkedin <i class='bx bx-right-arrow-alt'></i>
-      </a>
-
+  <footer>
+    <div class="d-flex justify-content-between align-items-center h-100">
+      
+      <span>
+        © {{year}} - Juan Sanchez
+      </span>
+      
+      <div>
+        
+        <a class="a-footer" href="https://github.com/jesm17">
+          Github <i class='bx bx-right-arrow-alt'></i>
+        </a>
+        <a class="a-footer" href="https://www.linkedin.com/in/juan-estiben-s%C3%A1nchez-mart%C3%ADnez-30b54a1b0">
+          Linkedin <i class='bx bx-right-arrow-alt'></i>
+        </a>
+        
+      </div>
     </div>
-  </div>
-</footer>
-
+  </footer>
+  
+  <!-- Scroll To Top Button -->
+  <button class="scroll-to-top" *ngIf="showScrollTop" (click)="scrollToTop()" aria-label="Volver arriba">
+    <i class='bx bx-up-arrow-alt'></i>
+  </button>
+  
+</body>
 </html>
