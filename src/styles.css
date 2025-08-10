@@ -3,8 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Local Montserrat font */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/MontserratFont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   height: 100%;
- 
+  font-family: 'Montserrat', sans-serif;
 }
